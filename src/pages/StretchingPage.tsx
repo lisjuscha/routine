@@ -148,7 +148,7 @@ export function StretchingPage({
                 {items.map(ex => (
                   <div
                     key={ex.id}
-                    className="flex items-center gap-3 bg-white/5 rounded-xl px-3 py-3"
+                    className="flex items-center gap-3 bg-white dark:bg-[#1c1c1e] rounded-xl px-3 py-3"
                   >
                     <input
                       type="checkbox"
@@ -189,7 +189,7 @@ export function StretchingPage({
       </div>
 
       {/* Duration + Start */}
-      <div className="px-4 pb-4 space-y-3 bg-black/80 dark:bg-black/80 pt-3 border-t border-white/10">
+      <div className="px-4 pb-4 space-y-3 bg-[#f2f2f7] dark:bg-black pt-3 border-t border-gray-200 dark:border-[#38383a]">
         <div className="flex gap-2">
           {(['kurz', 'mittel', 'lang'] as StretchDuration[]).map(d => (
             <button

@@ -51,7 +51,7 @@ export function BreathingPage({ onStart, onAkut }: BreathingPageProps) {
           <button
             key={program.id}
             onClick={() => onStart(program)}
-            className="w-full bg-white/5 rounded-2xl p-4 text-left flex items-center justify-between"
+            className="w-full bg-white dark:bg-[#1c1c1e] rounded-2xl p-4 text-left flex items-center justify-between"
           >
             <div>
               <p className="text-base font-semibold">{program.name}</p>

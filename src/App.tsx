@@ -66,7 +66,7 @@ export default function App() {
   }
 
   return (
-    <div className="max-w-md mx-auto h-dvh flex flex-col overflow-hidden bg-black dark:bg-black" style={{ paddingTop: 'var(--safe-top)' }}>
+    <div className="max-w-md mx-auto h-dvh flex flex-col overflow-hidden bg-[#f2f2f7] dark:bg-black" style={{ paddingTop: 'var(--safe-top)' }}>
       {/* Active tabs */}
       <main className="flex-1 overflow-y-auto min-h-0 overscroll-contain">
         {tab === 'stretching' && stretchingPage}

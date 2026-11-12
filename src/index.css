@@ -23,13 +23,13 @@ body {
   overflow: hidden;
   overscroll-behavior: none;
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif;
-  background-color: #000000;
-  color: #ffffff;
+  background-color: #f2f2f7;
+  color: #1c1c1e;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   body {
-    background-color: #f2f2f7;
-    color: #1c1c1e;
+    background-color: #000000;
+    color: #ffffff;
   }
 }

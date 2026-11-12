@@ -1,3 +1,4 @@
+import { Activity, Wind, Settings } from 'lucide-react'
 import type { AppTab } from '../types'
 
 interface BottomNavProps {
@@ -5,32 +6,37 @@ interface BottomNavProps {
   onChange: (tab: AppTab) => void
 }
 
-const TABS: { id: AppTab; label: string }[] = [
-  { id: 'stretching', label: 'Stretching' },
-  { id: 'atmen', label: 'Atmen' },
-  { id: 'einstellungen', label: 'Einstellungen' },
+const TABS: { id: AppTab; icon: typeof Activity; label: string }[] = [
+  { id: 'stretching',    icon: Activity,  label: 'Stretching' },
+  { id: 'atmen',         icon: Wind,      label: 'Atmen' },
+  { id: 'einstellungen', icon: Settings,  label: 'Einstellungen' },
 ]
 
 export function BottomNav({ active, onChange }: BottomNavProps) {
   return (
-    <nav
-      className="flex bg-black/90 dark:bg-black/90 light:bg-white/90 backdrop-blur-xl border-t border-white/10"
-      style={{ paddingBottom: 'var(--safe-bottom)' }}
-    >
-      {TABS.map(tab => (
-        <button
-          key={tab.id}
-          onClick={() => onChange(tab.id)}
-          className={[
-            'flex-1 py-3 text-xs font-medium transition-colors',
-            active === tab.id
-              ? 'text-green-400'
-              : 'text-gray-500 dark:text-gray-500',
-          ].join(' ')}
-        >
-          {tab.label}
-        </button>
-      ))}
+    <nav className="shrink-0 bg-white dark:bg-black border-t border-gray-200 dark:border-[#38383a]">
+      <div className="flex">
+        {TABS.map(tab => {
+          const Icon = tab.icon
+          const isActive = tab.id === active
+          return (
+            <button
+              key={tab.id}
+              onClick={() => onChange(tab.id)}
+              className={[
+                'flex-1 flex flex-col items-center justify-center py-2 gap-0.5 text-[10px] font-medium transition-colors',
+                isActive
+                  ? 'text-green-500 dark:text-green-400'
+                  : 'text-gray-400 dark:text-[#8e8e93]',
+              ].join(' ')}
+            >
+              <Icon size={22} strokeWidth={isActive ? 2.5 : 1.8} />
+              {tab.label}
+            </button>
+          )
+        })}
+      </div>
+      <div style={{ height: 'env(safe-area-inset-bottom, 0px)' }} />
     </nav>
   )
 }
