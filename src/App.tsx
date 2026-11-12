@@ -49,13 +49,12 @@ export default function App() {
       presets={data.presets}
       settings={data.settings}
       onStart={handleStartStretching}
-      onAkut={handleAkut}
       onSaveExercise={data.saveExercise}
       onRemoveExercise={data.removeExercise}
       onSavePreset={data.savePreset}
       onRemovePreset={data.removePreset}
     />
-  ), [data, handleStartStretching, handleAkut])
+  ), [data, handleStartStretching])
 
   if (!data.ready) {
     return (

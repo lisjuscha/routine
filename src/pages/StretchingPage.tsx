@@ -7,7 +7,6 @@ interface StretchingPageProps {
   presets: Preset[]
   settings: AppSettings
   onStart: (selected: Exercise[], duration: StretchDuration) => void
-  onAkut: () => void
   onSaveExercise: (e: Exercise) => Promise<void>
   onRemoveExercise: (id: string) => Promise<void>
   onSavePreset: (p: Preset) => Promise<void>
@@ -30,7 +29,7 @@ function computeEstimate(selected: Exercise[], duration: StretchDuration, settin
 
 export function StretchingPage({
   exercises, presets, settings,
-  onStart, onAkut,
+  onStart,
   onSaveExercise, onRemoveExercise,
   onSavePreset, onRemovePreset,
 }: StretchingPageProps) {
@@ -122,12 +121,6 @@ export function StretchingPage({
           {/* Header */}
           <div className="flex items-center justify-between px-4 pt-4 pb-3">
             <h1 className="text-2xl font-bold">Stretching</h1>
-            <button
-              onClick={onAkut}
-              className="text-xs font-semibold text-[#0a84ff] bg-[#0a84ff]/10 rounded-full px-3 py-1"
-            >
-              Akut
-            </button>
           </div>
 
           {/* Presets */}
