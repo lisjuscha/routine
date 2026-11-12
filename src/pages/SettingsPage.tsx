@@ -1,8 +1,5 @@
-import { useState } from 'react'
-import { Download, Upload } from 'lucide-react'
 import type { AppSettings } from '../types'
 import { DEFAULT_SETTINGS } from '../types'
-import { exportAllData, importAllData } from '../db'
 
 interface SettingsPageProps {
   settings: AppSettings
@@ -11,8 +8,8 @@ interface SettingsPageProps {
 
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="flex items-center justify-between py-3 border-b border-white/5">
-      <span className="text-sm">{label}</span>
+    <div className="flex items-center justify-between py-3 border-b border-gray-100 dark:border-white/5 gap-3">
+      <span className="text-sm min-w-0">{label}</span>
       <div className="shrink-0">{children}</div>
     </div>
   )
@@ -24,16 +21,18 @@ function Toggle({ value, onChange }: { value: boolean; onChange: (v: boolean) =>
       role="switch"
       aria-checked={value}
       onClick={() => onChange(!value)}
-      className={[
-        'w-12 h-7 rounded-full transition-colors relative',
-        value ? 'bg-green-500' : 'bg-white/20',
-      ].join(' ')}
+      className={`relative flex-none rounded-full transition-colors duration-200 ${value ? 'bg-green-500' : 'bg-[#e5e5ea] dark:bg-[#48484a]'}`}
+      style={{ width: 51, height: 31 }}
     >
       <span
-        className={[
-          'absolute top-0.5 w-6 h-6 bg-white rounded-full shadow transition-transform',
-          value ? 'translate-x-5.5' : 'translate-x-0.5',
-        ].join(' ')}
+        className="absolute bg-white rounded-full shadow-md transition-transform duration-200"
+        style={{
+          top: 2,
+          left: 2,
+          width: 27,
+          height: 27,
+          transform: value ? 'translateX(20px)' : 'translateX(0)',
+        }}
       />
     </button>
   )
@@ -58,14 +57,14 @@ function NumberInput({
     <div className="flex items-center gap-2">
       <button
         onClick={() => onChange(Math.max(min, value - step))}
-        className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-lg"
+        className="w-8 h-8 rounded-full bg-gray-200 dark:bg-white/10 flex items-center justify-center text-lg"
       >
         −
       </button>
-      <span className="text-sm tabular-nums w-12 text-center">{value} {unit}</span>
+      <span className="text-sm tabular-nums w-14 text-center">{value} {unit}</span>
       <button
         onClick={() => onChange(Math.min(max, value + step))}
-        className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-lg"
+        className="w-8 h-8 rounded-full bg-gray-200 dark:bg-white/10 flex items-center justify-center text-lg"
       >
         +
       </button>
@@ -80,36 +79,12 @@ function SectionHeader({ title }: { title: string }) {
 }
 
 export function SettingsPage({ settings, onUpdate }: SettingsPageProps) {
-  const [status, setStatus] = useState('')
-
   function set<K extends keyof AppSettings>(key: K, value: AppSettings[K]) {
     onUpdate({ ...settings, [key]: value })
   }
 
-  async function handleExport() {
-    try {
-      const data = await exportAllData()
-      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })
-      const url = URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url
-      a.download = `routine-backup-${new Date().toISOString().slice(0, 10)}.json`
-      a.click()
-      URL.revokeObjectURL(url)
-      setStatus('Gespeichert')
-    } catch { setStatus('Fehler beim Exportieren') }
-  }
-
-  async function handleImport(file: File) {
-    try {
-      const text = await file.text()
-      await importAllData(JSON.parse(text))
-      setStatus('Wiederhergestellt — bitte Seite neu laden')
-    } catch { setStatus('Ungültige Datei') }
-  }
-
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col overflow-x-hidden">
       <div className="px-4 pt-4 pb-2">
         <h1 className="text-2xl font-bold">Einstellungen</h1>
       </div>
@@ -160,33 +135,10 @@ export function SettingsPage({ settings, onUpdate }: SettingsPageProps) {
         {/* Reset */}
         <button
           onClick={() => onUpdate({ ...DEFAULT_SETTINGS })}
-          className="mt-4 text-sm text-red-400"
+          className="mt-6 text-sm text-red-400"
         >
           Einstellungen zurücksetzen
         </button>
-
-        {/* Backup */}
-        <SectionHeader title="Datensicherung" />
-        <div className="flex gap-3 mt-2">
-          <button
-            onClick={handleExport}
-            className="flex-1 flex items-center justify-center gap-2 bg-white/10 rounded-xl py-3 text-sm"
-          >
-            <Download size={16} />
-            Exportieren
-          </button>
-          <label className="flex-1 flex items-center justify-center gap-2 bg-white/10 rounded-xl py-3 text-sm cursor-pointer">
-            <Upload size={16} />
-            Importieren
-            <input
-              type="file"
-              accept=".json"
-              className="hidden"
-              onChange={e => { if (e.target.files?.[0]) handleImport(e.target.files[0]) }}
-            />
-          </label>
-        </div>
-        {status && <p className="text-xs text-gray-400 mt-2">{status}</p>}
       </div>
     </div>
   )

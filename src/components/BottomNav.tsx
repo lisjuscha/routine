@@ -14,7 +14,10 @@ const TABS: { id: AppTab; icon: typeof Activity; label: string }[] = [
 
 export function BottomNav({ active, onChange }: BottomNavProps) {
   return (
-    <nav className="shrink-0 bg-white dark:bg-black border-t border-gray-200 dark:border-[#38383a]">
+    <nav
+      className="shrink-0 bg-white dark:bg-black border-t border-gray-200 dark:border-[#38383a]"
+      style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
+    >
       <div className="flex">
         {TABS.map(tab => {
           const Icon = tab.icon
@@ -36,7 +39,6 @@ export function BottomNav({ active, onChange }: BottomNavProps) {
           )
         })}
       </div>
-      <div style={{ height: 'env(safe-area-inset-bottom, 0px)' }} />
     </nav>
   )
 }

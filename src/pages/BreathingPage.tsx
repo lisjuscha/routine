@@ -66,13 +66,6 @@ export function BreathingPage({ onStart, onAkut }: BreathingPageProps) {
           </button>
         ))}
 
-        {/* Medical disclaimer */}
-        <div className="mt-4 px-1">
-          <p className="text-xs text-gray-500 leading-relaxed">
-            Diese Übungen ersetzen keine ärztliche Abklärung. Bei starker Atemnot, Brustschmerzen
-            mit Ausstrahlung, bläulichen Lippen oder Ohnmacht sofort <strong className="text-gray-400">112</strong> rufen.
-          </p>
-        </div>
       </div>
     </div>
   )
