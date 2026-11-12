@@ -105,7 +105,7 @@ export function StretchingTimerScreen({ phases, settings, onDone, onAbort }: Str
   const isExercise = phase.type === 'exercise'
   const isPause = phase.type === 'side-switch' || phase.type === 'transition'
 
-  const ringColor = isPause ? '#ff9f0a' : '#34c759'
+  const ringColor = isPause ? '#ff9f0a' : '#0a84ff'
 
   let topLabel = phase.exerciseName
   let subLabel = ''

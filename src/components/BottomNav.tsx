@@ -29,7 +29,7 @@ export function BottomNav({ active, onChange }: BottomNavProps) {
               className={[
                 'flex-1 flex flex-col items-center justify-center py-2 gap-0.5 text-[10px] font-medium transition-colors',
                 isActive
-                  ? 'text-green-500 dark:text-green-400'
+                  ? 'text-[#0a84ff]'
                   : 'text-gray-400 dark:text-[#8e8e93]',
               ].join(' ')}
             >

@@ -12,7 +12,7 @@ export function TimerRing({
   progress,
   size = 260,
   strokeWidth = 12,
-  color = '#34c759',
+  color = '#0a84ff',
   trackColor = 'rgba(255,255,255,0.08)',
   children,
 }: TimerRingProps) {

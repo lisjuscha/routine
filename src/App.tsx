@@ -59,14 +59,14 @@ export default function App() {
 
   if (!data.ready) {
     return (
-      <div className="h-dvh flex items-center justify-center bg-black">
+      <div className="fixed inset-0 flex items-center justify-center bg-black">
         <p className="text-gray-500 text-sm">Lädt…</p>
       </div>
     )
   }
 
   return (
-    <div className="max-w-md mx-auto h-dvh flex flex-col overflow-hidden bg-[#f2f2f7] dark:bg-black" style={{ paddingTop: 'var(--safe-top)' }}>
+    <div className="fixed inset-0 flex flex-col overflow-hidden bg-[#f2f2f7] dark:bg-black" style={{ paddingTop: 'var(--safe-top)' }}>
       {/* Active tabs */}
       <main className="flex-1 overflow-y-auto min-h-0 overscroll-contain">
         {tab === 'stretching' && stretchingPage}
@@ -154,7 +154,7 @@ function DoneScreen({ title, lines, onRepeat, repeatLabel, onBack }: DoneScreenP
       <div className="flex flex-col gap-3 w-full px-8">
         <button
           onClick={onRepeat}
-          className="w-full py-4 rounded-2xl bg-green-500 text-black font-bold"
+          className="w-full py-4 rounded-2xl bg-[#0a84ff] text-white font-bold"
         >
           {repeatLabel}
         </button>

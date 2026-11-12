@@ -155,7 +155,7 @@ export function StretchingPage({
                       id={`ex-${ex.id}`}
                       checked={selectedIds.has(ex.id)}
                       onChange={() => toggleId(ex.id)}
-                      className="w-5 h-5 accent-green-400 rounded"
+                      className="w-5 h-5 accent-[#0a84ff] rounded"
                     />
                     <label
                       htmlFor={`ex-${ex.id}`}
@@ -181,7 +181,7 @@ export function StretchingPage({
 
         <button
           onClick={() => setEditExercise({ ...BLANK_EXERCISE, id: '', isNew: true })}
-          className="flex items-center gap-2 text-sm text-green-400 py-3 mt-1 mb-4"
+          className="flex items-center gap-2 text-sm text-[#0a84ff] py-3 mt-1 mb-4"
         >
           <Plus size={16} />
           Übung hinzufügen
@@ -201,7 +201,7 @@ export function StretchingPage({
               className={[
                 'flex-1 py-2 rounded-xl text-sm font-semibold transition-colors',
                 duration === d
-                  ? 'bg-green-500 text-black'
+                  ? 'bg-[#0a84ff] text-white'
                   : 'bg-white/10 text-white',
               ].join(' ')}
             >
@@ -225,7 +225,7 @@ export function StretchingPage({
         <button
           onClick={() => onStart(selected, duration)}
           disabled={selected.length === 0}
-          className="w-full py-4 rounded-2xl text-base font-bold bg-green-500 text-black disabled:opacity-30 transition-opacity"
+          className="w-full py-4 rounded-2xl text-base font-bold bg-[#0a84ff] text-white disabled:opacity-30 transition-opacity"
         >
           Start
         </button>
@@ -254,7 +254,7 @@ export function StretchingPage({
                   type="checkbox"
                   checked={editExercise.bilateral}
                   onChange={e => setEditExercise(prev => prev ? { ...prev, bilateral: e.target.checked } : null)}
-                  className="w-5 h-5 accent-green-400"
+                  className="w-5 h-5 accent-[#0a84ff]"
                 />
                 Beide Seiten
               </label>
@@ -278,7 +278,7 @@ export function StretchingPage({
               <button
                 onClick={handleSaveExercise}
                 disabled={!editExercise.name.trim()}
-                className="flex-1 py-3 rounded-2xl bg-green-500 text-black font-bold disabled:opacity-30"
+                className="flex-1 py-3 rounded-2xl bg-[#0a84ff] text-white font-bold disabled:opacity-30"
               >
                 Speichern
               </button>
@@ -305,7 +305,7 @@ export function StretchingPage({
             <button
               onClick={handleSavePreset}
               disabled={!editPresetName.trim()}
-              className="w-full py-3 rounded-2xl bg-green-500 text-black font-bold disabled:opacity-30"
+              className="w-full py-3 rounded-2xl bg-[#0a84ff] text-white font-bold disabled:opacity-30"
             >
               Speichern
             </button>

@@ -21,7 +21,7 @@ function Toggle({ value, onChange }: { value: boolean; onChange: (v: boolean) =>
       role="switch"
       aria-checked={value}
       onClick={() => onChange(!value)}
-      className={`relative flex-none rounded-full transition-colors duration-200 ${value ? 'bg-green-500' : 'bg-[#e5e5ea] dark:bg-[#48484a]'}`}
+      className={`relative flex-none rounded-full transition-colors duration-200 ${value ? 'bg-[#0a84ff]' : 'bg-[#e5e5ea] dark:bg-[#48484a]'}`}
       style={{ width: 51, height: 31 }}
     >
       <span
