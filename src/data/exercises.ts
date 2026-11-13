@@ -84,6 +84,22 @@ export const SEED_EXERCISES: Exercise[] = [
     description: 'Arm über den Kopf strecken, zur Seite beugen – Flanke und seitliche Wirbelsäule dehnen',
   },
 
+  // ── Rücken (Fortsetzung) ─────────────────────────────────────────────────
+  {
+    id: 'ruecken-world-greatest',
+    name: "World's Greatest Stretch",
+    bilateral: true,
+    category: 'Rücken',
+    description: 'Ausfallschritt: Hand innen neben den Fuss setzen, dann Arm zur Decke drehen – Hüfte, Brustwirbelsäule und Schulter in einer Bewegung',
+  },
+  {
+    id: 'ruecken-bretzel',
+    name: 'Bretzel',
+    bilateral: true,
+    category: 'Rücken',
+    description: 'Seitenlage: unteres Knie 90° angewinkelt, oberes Knie mit Gegenseiten-Hand zum Boden drücken, oberer Arm öffnet nach hinten – Schulter bleibt am Boden',
+  },
+
   // ── Hüfte (ATG / KOT) ───────────────────────────────────────────────────
   {
     id: 'huefte-couch-stretch',
@@ -114,6 +130,21 @@ export const SEED_EXERCISES: Exercise[] = [
     description: 'Im Stehen: Knie hochziehen, nach außen rotieren, nach hinten strecken, zurück – voller Kreisbogen ohne Oberkörperbewegung',
   },
 
+  {
+    id: 'huefte-frosch',
+    name: 'Frosch-Stretch',
+    bilateral: false,
+    category: 'Hüfte',
+    description: 'Kniend, Knie weit nach außen, Füsse hinter den Knien – Hüfte gleichmäßig nach hinten absenken, Leiste öffnet sich',
+  },
+  {
+    id: 'huefte-cossack',
+    name: 'Cossack Squat',
+    bilateral: true,
+    category: 'Hüfte',
+    description: 'Breiter Stand, ein Knie tief beugen, anderes Bein gestreckt – Fuß des gestreckten Beins zeigt nach oben, Leiste dehnen',
+  },
+
   // ── Beine (ATG / KOT) ───────────────────────────────────────────────────
   {
     id: 'beine-knie-zehe-drill',
@@ -142,6 +173,13 @@ export const SEED_EXERCISES: Exercise[] = [
     bilateral: true,
     category: 'Beine',
     description: 'Fuss an Wand, Knie gebogen – Ferse bleibt am Boden, langsam nach vorne drücken bis tiefer Wadenziehen',
+  },
+  {
+    id: 'beine-pancake',
+    name: 'Pancake',
+    bilateral: false,
+    category: 'Beine',
+    description: 'Spreizsitz, Oberkörper gerade nach vorne legen – Brust zum Boden, Beine aktiv ausgestreckt halten',
   },
   {
     id: 'beine-reverse-nordic',

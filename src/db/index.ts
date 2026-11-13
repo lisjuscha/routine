@@ -14,7 +14,7 @@ let dbInstance: IDBPDatabase<RoutineDB> | null = null
 
 export async function getDB(): Promise<IDBPDatabase<RoutineDB>> {
   if (dbInstance) return dbInstance
-  dbInstance = await openDB<RoutineDB>('routine', 2, {
+  dbInstance = await openDB<RoutineDB>('routine', 3, {
     upgrade(db, oldVersion) {
       if (oldVersion < 1) {
         db.createObjectStore('exercises', { keyPath: 'id' })
@@ -22,8 +22,7 @@ export async function getDB(): Promise<IDBPDatabase<RoutineDB>> {
         db.createObjectStore('settings', { keyPath: 'id' as never })
       }
       if (oldVersion < 2) {
-        // Replace all seed exercises with the new KOT-based set.
-        // Custom exercises (IDs not starting with known prefixes) are preserved.
+        // Replace original seed exercises with KOT-based set.
         const OLD_SEED_IDS = new Set([
           'nacken-seitneigung','nacken-chin-tuck','nacken-rotation',
           'schultern-brustöffner','schultern-querstretcher',
@@ -38,6 +37,17 @@ export async function getDB(): Promise<IDBPDatabase<RoutineDB>> {
           await Promise.all(toDelete.map((e: Exercise) => store.delete(e.id)))
           await Promise.all(SEED_EXERCISES.map(e => store.put(e)))
         })()
+      }
+      if (oldVersion < 3) {
+        // Add new Tom Morrison exercises (upsert — safe to run even on fresh installs).
+        const NEW_IDS = [
+          'ruecken-world-greatest','ruecken-bretzel',
+          'huefte-frosch','huefte-cossack',
+          'beine-pancake',
+        ]
+        const newExercises = SEED_EXERCISES.filter(e => NEW_IDS.includes(e.id))
+        const store = db.transaction('exercises', 'readwrite').objectStore('exercises')
+        void Promise.all(newExercises.map(e => store.put(e)))
       }
     },
   })
