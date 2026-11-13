@@ -12,42 +12,34 @@ interface RoutineDB extends DBSchema {
 
 let dbInstance: IDBPDatabase<RoutineDB> | null = null
 
+// IDs from the original v1 seed that were replaced
+const LEGACY_IDS = new Set([
+  'schultern-querstretcher',
+  'huefte-hüftbeuger',
+  'beine-quadrizeps',
+  'beine-waden',
+  'beine-ischiokrural',
+  'beine-piriformis',
+])
+
 export async function getDB(): Promise<IDBPDatabase<RoutineDB>> {
   if (dbInstance) return dbInstance
-  dbInstance = await openDB<RoutineDB>('routine', 3, {
-    upgrade(db, oldVersion) {
+  dbInstance = await openDB<RoutineDB>('routine', 4, {
+    async upgrade(db, oldVersion, _newVersion, tx) {
       if (oldVersion < 1) {
         db.createObjectStore('exercises', { keyPath: 'id' })
         db.createObjectStore('presets', { keyPath: 'id' })
         db.createObjectStore('settings', { keyPath: 'id' as never })
       }
-      if (oldVersion < 2) {
-        // Replace original seed exercises with KOT-based set.
-        const OLD_SEED_IDS = new Set([
-          'nacken-seitneigung','nacken-chin-tuck','nacken-rotation',
-          'schultern-brustöffner','schultern-querstretcher',
-          'ruecken-katze-kuh','ruecken-seitbeuge','ruecken-thoraxrotation',
-          'huefte-hüftbeuger','huefte-90-90','huefte-taubenpose',
-          'beine-quadrizeps','beine-waden','beine-ischiokrural','beine-piriformis',
-        ])
-        const store = db.transaction('exercises', 'readwrite').objectStore('exercises')
-        void (async () => {
-          const all = await store.getAll()
-          const toDelete = all.filter((e: Exercise) => OLD_SEED_IDS.has(e.id))
-          await Promise.all(toDelete.map((e: Exercise) => store.delete(e.id)))
-          await Promise.all(SEED_EXERCISES.map(e => store.put(e)))
-        })()
-      }
-      if (oldVersion < 3) {
-        // Add new Tom Morrison exercises (upsert — safe to run even on fresh installs).
-        const NEW_IDS = [
-          'ruecken-world-greatest','ruecken-bretzel',
-          'huefte-frosch','huefte-cossack',
-          'beine-pancake',
-        ]
-        const newExercises = SEED_EXERCISES.filter(e => NEW_IDS.includes(e.id))
-        const store = db.transaction('exercises', 'readwrite').objectStore('exercises')
-        void Promise.all(newExercises.map(e => store.put(e)))
+      if (oldVersion >= 1) {
+        const store = tx.objectStore('exercises')
+        // Upsert all current seed exercises
+        await Promise.all(SEED_EXERCISES.map(e => store.put(e)))
+        // Remove legacy exercises that are no longer in the seed
+        const all = await store.getAll()
+        await Promise.all(
+          all.filter(e => LEGACY_IDS.has(e.id)).map(e => store.delete(e.id)),
+        )
       }
     },
   })
