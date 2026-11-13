@@ -1,7 +1,7 @@
 import type { Exercise } from '../types'
 
 export const SEED_EXERCISES: Exercise[] = [
-  // Nacken
+  // ── Nacken ───────────────────────────────────────────────────────────────
   {
     id: 'nacken-seitneigung',
     name: 'Seitneigung Nacken',
@@ -14,101 +14,140 @@ export const SEED_EXERCISES: Exercise[] = [
     name: 'Chin Tuck',
     bilateral: false,
     category: 'Nacken',
-    description: 'Kinn sanft zur Brust ziehen, Nacken lang machen',
+    description: 'Kinn sanft zur Brust ziehen, Nacken lang machen, Hinterkopf nach oben',
   },
   {
     id: 'nacken-rotation',
     name: 'Nackenrotation',
     bilateral: true,
     category: 'Nacken',
-    description: 'Kopf langsam zur Schulter drehen, Blick in die Ferne',
+    description: 'Kopf langsam zur Schulter drehen, Kinn leicht absenken',
   },
-  // Schultern
+
+  // ── Schultern (Volleyball) ───────────────────────────────────────────────
+  {
+    id: 'schultern-tuerrahmen',
+    name: 'Türrahmen-Stretch',
+    bilateral: true,
+    category: 'Schultern',
+    description: 'Arm 90° am Türrahmen anlehnen, Körper langsam wegdrehen bis Brust + Schulter vorne ziehen',
+  },
+  {
+    id: 'schultern-aussenrotation',
+    name: 'Außenrotations-Stretch',
+    bilateral: true,
+    category: 'Schultern',
+    description: 'Ellbogen 90° an Wand, Unterarm flach am Türrahmen – Oberkörper wegdrehen bis vordere Schulter zieht',
+  },
+  {
+    id: 'schultern-latissimus',
+    name: 'Latissimus-Stretch',
+    bilateral: true,
+    category: 'Schultern',
+    description: 'Arm gestreckt auf Schulterhöhe an Wand/Stange, Körper seitlich wegdrücken bis Lat und Achsel ziehen',
+  },
   {
     id: 'schultern-brustöffner',
     name: 'Brustöffner',
     bilateral: false,
     category: 'Schultern',
-    description: 'Hände hinter dem Rücken falten, Brust öffnen und Schulterblätter zusammenziehen',
+    description: 'Hände hinter dem Rücken falten, Schulterblätter zusammenziehen, Brust öffnen',
   },
+
+  // ── Rücken ───────────────────────────────────────────────────────────────
   {
-    id: 'schultern-querstretcher',
-    name: 'Schulter-Querstretcher',
-    bilateral: true,
-    category: 'Schultern',
-    description: 'Arm gerade über die Brust, Gegenseite drückt sanft dagegen',
+    id: 'ruecken-jefferson-curl',
+    name: 'Jefferson Curl',
+    bilateral: false,
+    category: 'Rücken',
+    description: 'Im Stehen Wirbel für Wirbel nach unten rollen, Kinn zur Brust, Hände hängen – Wirbelsäule lang machen',
   },
-  // Rücken
   {
     id: 'ruecken-katze-kuh',
     name: 'Katze–Kuh',
     bilateral: false,
     category: 'Rücken',
-    description: 'Im Vierfüßlerstand: Rücken rund machen (Katze), dann durchhängen (Kuh)',
-  },
-  {
-    id: 'ruecken-seitbeuge',
-    name: 'Seitliche Rumpfbeugung',
-    bilateral: true,
-    category: 'Rücken',
-    description: 'Arm über den Kopf, zur Seite beugen und Flanke dehnen',
+    description: 'Vierfüßlerstand: Rücken rund machen (Kinn zur Brust), dann durchhängen und Kopf heben',
   },
   {
     id: 'ruecken-thoraxrotation',
     name: 'Thoraxrotation',
     bilateral: true,
     category: 'Rücken',
-    description: 'Im Sitzen: Oberkörper drehen, Hände auf den Schultern',
+    description: 'Im Schneidersitz Hände auf Schultern, Ellbogen nach vorne – Oberkörper drehen ohne Hüfte mitzunehmen',
   },
-  // Hüfte
   {
-    id: 'huefte-hüftbeuger',
-    name: 'Hüftbeuger-Stretch',
+    id: 'ruecken-seitbeuge',
+    name: 'Seitliche Rumpfbeugung',
+    bilateral: true,
+    category: 'Rücken',
+    description: 'Arm über den Kopf strecken, zur Seite beugen – Flanke und seitliche Wirbelsäule dehnen',
+  },
+
+  // ── Hüfte (ATG / KOT) ───────────────────────────────────────────────────
+  {
+    id: 'huefte-couch-stretch',
+    name: 'Couch Stretch',
     bilateral: true,
     category: 'Hüfte',
-    description: 'Ausfallschritt, hinteres Knie auf dem Boden, Hüfte nach vorne schieben',
+    description: 'Hinteres Knie am Boden, Fuss an Wand oder Stuhl hochgestellt – Hüfte gerade nach vorne schieben, Gesäß anspannen',
   },
   {
     id: 'huefte-90-90',
     name: '90-90-Stretch',
     bilateral: true,
     category: 'Hüfte',
-    description: 'Beide Knie im 90-Grad-Winkel, aufrecht sitzen, Körper leicht nach vorne lehnen',
+    description: 'Beide Knie im 90°-Winkel, aufrecht sitzen – Oberkörper leicht nach vorne, Hüfte öffnen',
   },
   {
     id: 'huefte-taubenpose',
     name: 'Taubenpose',
     bilateral: true,
     category: 'Hüfte',
-    description: 'Vorderbein quer, Oberkörper entweder aufrecht oder nach vorne abgelegt',
-  },
-  // Beine
-  {
-    id: 'beine-quadrizeps',
-    name: 'Quadrizeps-Stretch',
-    bilateral: true,
-    category: 'Beine',
-    description: 'Im Stehen Ferse zum Gesäß ziehen, Knie zusammen halten',
+    description: 'Vorderbein quer, hinteres Bein gestreckt – Oberkörper aufrecht oder nach vorne abgelegt',
   },
   {
-    id: 'beine-waden',
-    name: 'Wadendehnung',
+    id: 'huefte-hip-cars',
+    name: 'Hip CARs',
+    bilateral: true,
+    category: 'Hüfte',
+    description: 'Im Stehen: Knie hochziehen, nach außen rotieren, nach hinten strecken, zurück – voller Kreisbogen ohne Oberkörperbewegung',
+  },
+
+  // ── Beine (ATG / KOT) ───────────────────────────────────────────────────
+  {
+    id: 'beine-knie-zehe-drill',
+    name: 'Knie-über-Zehe-Drill',
     bilateral: true,
     category: 'Beine',
-    description: 'Ferse auf dem Boden, Zehen gegen die Wand, leicht nach vorne lehnen',
+    description: 'Fuss flach am Boden, Knie so weit wie möglich über die Zehe schieben – Knöchelmobilität steigern',
   },
   {
-    id: 'beine-ischiokrural',
-    name: 'Ischiokrural-Dehnung',
+    id: 'beine-atg-split-squat',
+    name: 'ATG Split Squat',
     bilateral: true,
     category: 'Beine',
-    description: 'Bein gestreckt auf einer Erhöhung, Oberkörper aufrecht nach vorne lehnen',
+    description: 'Tiefer Ausfallschritt, vorderes Knie weit über die Zehe – Knöchel, Knie und Hüftbeuger gleichzeitig dehnen',
   },
   {
-    id: 'beine-piriformis',
-    name: 'Piriformis-Stretch',
+    id: 'beine-elephant-walk',
+    name: 'Elephant Walk',
+    bilateral: false,
+    category: 'Beine',
+    description: 'Gehen mit gestreckten Beinen, Oberkörper hängt nach unten – Hamstrings und Waden durch Bewegung dehnen',
+  },
+  {
+    id: 'beine-soleus-stretch',
+    name: 'Soleus-Stretch',
     bilateral: true,
     category: 'Beine',
-    description: 'Auf dem Rücken liegend: Knöchel aufs andere Knie legen und Bein zur Brust ziehen',
+    description: 'Fuss an Wand, Knie gebogen – Ferse bleibt am Boden, langsam nach vorne drücken bis tiefer Wadenziehen',
+  },
+  {
+    id: 'beine-reverse-nordic',
+    name: 'Reverse Nordic',
+    bilateral: false,
+    category: 'Beine',
+    description: 'Kniend, Füsse fixiert – Oberkörper langsam nach hinten sinken lassen, Quadrizeps unter Kontrolle dehnen',
   },
 ]

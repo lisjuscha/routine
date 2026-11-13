@@ -14,11 +14,31 @@ let dbInstance: IDBPDatabase<RoutineDB> | null = null
 
 export async function getDB(): Promise<IDBPDatabase<RoutineDB>> {
   if (dbInstance) return dbInstance
-  dbInstance = await openDB<RoutineDB>('routine', 1, {
-    upgrade(db) {
-      db.createObjectStore('exercises', { keyPath: 'id' })
-      db.createObjectStore('presets', { keyPath: 'id' })
-      db.createObjectStore('settings', { keyPath: 'id' as never })
+  dbInstance = await openDB<RoutineDB>('routine', 2, {
+    upgrade(db, oldVersion) {
+      if (oldVersion < 1) {
+        db.createObjectStore('exercises', { keyPath: 'id' })
+        db.createObjectStore('presets', { keyPath: 'id' })
+        db.createObjectStore('settings', { keyPath: 'id' as never })
+      }
+      if (oldVersion < 2) {
+        // Replace all seed exercises with the new KOT-based set.
+        // Custom exercises (IDs not starting with known prefixes) are preserved.
+        const OLD_SEED_IDS = new Set([
+          'nacken-seitneigung','nacken-chin-tuck','nacken-rotation',
+          'schultern-brustöffner','schultern-querstretcher',
+          'ruecken-katze-kuh','ruecken-seitbeuge','ruecken-thoraxrotation',
+          'huefte-hüftbeuger','huefte-90-90','huefte-taubenpose',
+          'beine-quadrizeps','beine-waden','beine-ischiokrural','beine-piriformis',
+        ])
+        const store = db.transaction('exercises', 'readwrite').objectStore('exercises')
+        void (async () => {
+          const all = await store.getAll()
+          const toDelete = all.filter((e: Exercise) => OLD_SEED_IDS.has(e.id))
+          await Promise.all(toDelete.map((e: Exercise) => store.delete(e.id)))
+          await Promise.all(SEED_EXERCISES.map(e => store.put(e)))
+        })()
+      }
     },
   })
   await seedIfEmpty(dbInstance)
