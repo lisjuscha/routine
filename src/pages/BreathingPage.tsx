@@ -19,7 +19,7 @@ const AKUT_PROGRAM = BREATH_PROGRAMS.find(p => p.isAkut)!
 export function BreathingPage({ onStart, onAkut }: BreathingPageProps) {
   return (
     <div className="flex flex-col h-full">
-      <div className="flex items-center justify-between px-4 pt-4 pb-2">
+      <div className="flex items-center justify-between px-4 pb-2">
         <h1 className="text-2xl font-bold">Atmen</h1>
         <button
           onClick={onAkut}

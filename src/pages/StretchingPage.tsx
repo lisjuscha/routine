@@ -119,7 +119,7 @@ export function StretchingPage({
           style={{ transform: detailCategory ? 'translateX(-100%)' : 'translateX(0)' }}
         >
           {/* Header */}
-          <div className="flex items-center justify-between px-4 pt-4 pb-3">
+          <div className="flex items-center justify-between px-4 pb-3">
             <h1 className="text-2xl font-bold">Stretching</h1>
           </div>
 
@@ -224,7 +224,7 @@ export function StretchingPage({
           onTouchEnd={handleTouchEnd}
         >
           {/* Header */}
-          <div className="flex items-center px-2 pt-4 pb-3 gap-1">
+          <div className="flex items-center px-2 pb-3 gap-1">
             <button
               onClick={() => setDetailCategory(null)}
               className="flex items-center gap-0.5 text-[#0a84ff] px-2 py-2"

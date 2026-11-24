@@ -85,7 +85,7 @@ export function SettingsPage({ settings, onUpdate }: SettingsPageProps) {
 
   return (
     <div className="flex flex-col overflow-x-hidden">
-      <div className="px-4 pt-4 pb-2">
+      <div className="px-4 pb-2">
         <h1 className="text-2xl font-bold">Einstellungen</h1>
       </div>
 
